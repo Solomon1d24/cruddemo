@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +39,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Employee findEmployeeById(int index) {
+    public Employee findEmployeeById(int index) throws EmptyResultDataAccessException {
         // Get the current session
         Session currentSession = this.entityManager.unwrap(Session.class);
 

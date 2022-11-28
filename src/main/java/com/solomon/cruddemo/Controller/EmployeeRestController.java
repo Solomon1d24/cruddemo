@@ -4,6 +4,7 @@ import com.solomon.cruddemo.Exception.EmployeeNotFoundException;
 import com.solomon.cruddemo.Model.Employee;
 import com.solomon.cruddemo.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,11 @@ public class EmployeeRestController {
 
     @GetMapping("/employees/{employeeId}")
     public Employee getEmployeeById(@PathVariable int employeeId) {
+        try {
+            Employee employee = this.employeeService.findEmployeeById(employeeId);
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException){
+            throw new EmployeeNotFoundException("Employee with id " + employeeId + " is not found in the database");
+        }
         return this.employeeService.findEmployeeById(employeeId);
     }
 
@@ -43,9 +49,9 @@ public class EmployeeRestController {
     @DeleteMapping("/employees/{employeeId}")
     public String deleteEmployee(@PathVariable int employeeId) {
 
-        Employee employee = this.employeeService.findEmployeeById(employeeId);
-
-        if (employee == null) {
+        try {
+            Employee employee = this.employeeService.findEmployeeById(employeeId);
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException){
             throw new EmployeeNotFoundException("Employee with id " + employeeId + " is not found in the database");
         }
 
