@@ -8,11 +8,10 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Repository
+@Repository("EmployeeDAOImpl")
 public class EmployeeDAOImpl implements EmployeeDAO {
     private EntityManager entityManager;
 
