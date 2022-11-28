@@ -4,6 +4,7 @@ import com.solomon.cruddemo.Dao.EmployeeDAO;
 import com.solomon.cruddemo.Model.Employee;
 import com.solomon.cruddemo.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public Employee findEmployeeById(int index) {
+    public Employee findEmployeeById(int index) throws EmptyResultDataAccessException {
         return this.employeeDAO.findEmployeeById(index);
     }
 
