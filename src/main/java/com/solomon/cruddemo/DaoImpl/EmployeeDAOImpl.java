@@ -61,7 +61,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         Session currentSession = this.entityManager.unwrap(Session.class);
 
         // let the session save or update
-        currentSession.persist(employee);
+        currentSession.saveOrUpdate(employee);
 
         // log the action
         System.out.println(">> Save the employee " + employee.toString());
@@ -73,7 +73,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         // create the session
         Session currentSession = this.entityManager.unwrap(Session.class);
         // let the session save or update
-        currentSession.merge(employee);
+        currentSession.saveOrUpdate(employee);
         // log the action
         System.out.println(">> Update the employee " + employee.toString());
 

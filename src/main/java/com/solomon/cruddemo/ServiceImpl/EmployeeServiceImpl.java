@@ -4,10 +4,12 @@ import com.solomon.cruddemo.Dao.EmployeeDAO;
 import com.solomon.cruddemo.Model.Employee;
 import com.solomon.cruddemo.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -35,5 +37,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public void deleteEmployeeById(int index) {
         this.employeeDAO.deleteEmployeeById(index);
+    }
+    @Override
+    @Transactional
+    public void saveEmployee(Employee employee)
+    {
+        this.employeeDAO.saveEmployee(employee);
+    }
+
+    @Override
+    @Transactional
+    public void updateEmployee(Employee employee){
+        this.employeeDAO.updateEmployee(employee);
     }
 }
