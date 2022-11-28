@@ -21,7 +21,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional
     public List<Employee> findAll() {
 
         // get the current session
@@ -39,7 +38,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional
     public Employee findEmployeeById(int index) {
         // Get the current session
         Session currentSession = this.entityManager.unwrap(Session.class);
@@ -58,7 +56,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional
     public void saveEmployee(Employee employee) {
         // create the session
         Session currentSession = this.entityManager.unwrap(Session.class);
@@ -72,7 +69,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional
     public void updateEmployee(Employee employee) {
         // create the session
         Session currentSession = this.entityManager.unwrap(Session.class);
@@ -84,7 +80,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional
     public void deleteEmployee(Employee employee) {
         // create the session
         Session currentSession = this.entityManager.unwrap(Session.class);
@@ -93,4 +88,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         // log the action
         System.out.println(">> Delete the employee " + employee.toString());
     }
+
+    @Override
+    public void deleteEmployeeById(int index){
+        // create the session
+        Session currentSession = this.entityManager.unwrap(Session.class);
+        // create the query
+        Query query = currentSession.createQuery("DELETE FROM Employee e WHERE e.id=:id");
+        query.setParameter("id",index);
+        // execute the query
+        query.executeUpdate();
+    }
+
 }
