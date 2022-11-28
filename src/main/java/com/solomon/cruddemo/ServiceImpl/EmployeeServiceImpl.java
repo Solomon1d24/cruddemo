@@ -4,6 +4,7 @@ import com.solomon.cruddemo.Dao.EmployeeDAO;
 import com.solomon.cruddemo.Model.Employee;
 import com.solomon.cruddemo.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
+    @Qualifier("EmployeeDAOImpl")
     private EmployeeDAO employeeDAO;
 
     @Override
